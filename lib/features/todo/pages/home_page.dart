@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:task_management/common/utils/constants.dart';
+import 'package:task_management/common/widgets/appstyle.dart';
+import 'package:task_management/common/widgets/text.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          "Task Management App",
-          style: TextStyle(fontSize: 30),
-        ),
+        child: MyText(
+            text: "Task Management App",
+            style: textStyle(24, AppConsts.kBlueLight, FontWeight.bold)),
       ),
     );
   }
