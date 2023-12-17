@@ -63,7 +63,6 @@ class _OnboardingState extends State<OnboardingPage> {
                             controller: pageController,
                             count: 2,
                             effect: const WormEffect(
-                              dotColor: AppConsts.kLight,
                               activeDotColor: AppConsts.kYellow,
                               dotHeight: 12,
                               dotWidth: 12,
