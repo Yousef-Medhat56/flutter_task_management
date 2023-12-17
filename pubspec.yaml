@@ -38,6 +38,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   hooks_riverpod: ^2.4.9
   google_fonts: ^6.1.0
+  flutter_vector_icons: ^2.0.0
 
 dev_dependencies:
   flutter_test:
