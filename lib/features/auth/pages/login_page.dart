@@ -8,6 +8,7 @@ import 'package:task_management/common/widgets/buttons/outline_button.dart';
 import 'package:task_management/common/widgets/input/text_field.dart';
 import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
+import 'package:task_management/features/auth/pages/otp_page.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -95,7 +96,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: OutlineBtn(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const OtpPage())));
+                },
                 width: AppConsts.kWidth * 0.9,
                 height: AppConsts.kHeight * 0.07,
                 borderColor: AppConsts.kBkDark,
