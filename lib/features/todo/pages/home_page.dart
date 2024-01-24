@@ -4,6 +4,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:task_management/common/utils/constants.dart';
 import 'package:task_management/common/widgets/appstyle.dart';
+import 'package:task_management/common/widgets/expansion/expansion_tile.dart';
 import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/spacers/width_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
@@ -20,6 +21,9 @@ class _HomePageState extends ConsumerState<HomePage>
     with TickerProviderStateMixin {
   late final TabController tabController =
       TabController(length: 2, vsync: this);
+
+  final String dayAfterTomorrow =
+      DateTime.now().add(const Duration(days: 2)).toString().substring(5, 10);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +115,20 @@ class _HomePageState extends ConsumerState<HomePage>
                     ),
                   ]),
                 ),
-              )
+              ),
+              const HeightSpacer(height: 24),
+              const CustomExpansionTile(
+                title: "Tomorrow's tasks",
+                subtitle: "Tomorrow's tasks are shown here",
+                children: [],
+              ),
+              const HeightSpacer(height: 24),
+              CustomExpansionTile(
+                title: dayAfterTomorrow,
+                subtitle: "$dayAfterTomorrow tasks are shown here",
+                children: const [],
+              ),
+              const HeightSpacer(height: 24),
             ],
           ),
         ),
