@@ -9,6 +9,7 @@ import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/spacers/width_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
 import 'package:task_management/features/todo/widgets/extended_appbar.dart';
+import 'package:task_management/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -107,6 +108,21 @@ class _HomePageState extends ConsumerState<HomePage>
                     Container(
                       color: AppConsts.kBkLight,
                       height: AppConsts.kHeight * 0.3,
+                      child: ListView(
+                        children: [
+                          TodoTile(
+                            title: "Title",
+                            description: "Lorem ipsum...",
+                            start: "03:00",
+                            end: "05:30",
+                            switcher: Switch(
+                                value: true,
+                                onChanged: (bool value) {
+                                  value = !value;
+                                }),
+                          )
+                        ],
+                      ),
                     ),
                     //TODO: add container child
                     Container(
