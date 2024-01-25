@@ -1,13 +1,13 @@
-class TaskModel {
+class UserModel {
   final int id;
   final int isVerified;
 
-  TaskModel({
+  UserModel({
     required this.id,
     required this.isVerified,
   });
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         isVerified: json["isVerified"],
       );
