@@ -88,6 +88,18 @@ class DBHelper {
     return results;
   }
 
+  //update a todo
+  static Future<int> completeTodo(int id) async {
+    final Database db = await DBHelper.db();
+    final results = db.update(
+      "Todo",
+      {"isCompleted": 1},
+      where: "id=?",
+      whereArgs: [id],
+    );
+    return results;
+  }
+
   //delete a todo
   static Future<void> deleteTodo(int id) async {
     final Database db = await DBHelper.db();
