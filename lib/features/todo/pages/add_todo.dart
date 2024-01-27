@@ -6,6 +6,9 @@ import 'package:task_management/common/widgets/appstyle.dart';
 import 'package:task_management/common/widgets/buttons/outline_button.dart';
 import 'package:task_management/common/widgets/input/text_field.dart';
 import 'package:task_management/common/widgets/spacers/height_spacer.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as picker;
+import 'package:task_management/features/todo/controllers/dates/dates_provider.dart';
 
 class AddTodoPage extends ConsumerStatefulWidget {
   const AddTodoPage({super.key});
@@ -19,6 +22,10 @@ class _AddTodoPageState extends ConsumerState<AddTodoPage> {
   final TextEditingController todoDescController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var todoDate = ref.watch(dateStateProvider);
+    var todoStartTime = ref.watch(startTimeStateProvider);
+    var todoFinishTime = ref.watch(finishTimeStateProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -47,12 +54,22 @@ class _AddTodoPageState extends ConsumerState<AddTodoPage> {
             const HeightSpacer(height: 12),
             OutlineBtn(
               //TODO: Add tap handler
-              onTap: () {},
+              onTap: () {
+                picker.DatePicker.showDatePicker(context,
+                    showTitleActions: true,
+                    minTime: DateTime.now(),
+                    maxTime: DateTime.now().add(const Duration(days: 365)),
+                    onConfirm: (date) {
+                  ref
+                      .read(dateStateProvider.notifier)
+                      .setDate(date.toString().substring(0, 10));
+                }, currentTime: DateTime.now(), locale: picker.LocaleType.en);
+              },
               width: AppConsts.kWidth,
               height: 52.h,
               borderColor: AppConsts.kLight,
               bgColor: AppConsts.kBlueLight,
-              text: "Set date",
+              text: todoDate.isNotEmpty ? todoDate : "Set date",
             ),
             const HeightSpacer(height: 12),
             Row(
@@ -60,21 +77,46 @@ class _AddTodoPageState extends ConsumerState<AddTodoPage> {
               children: [
                 OutlineBtn(
                   //TODO: Add tap handler
-                  onTap: () {},
+                  onTap: () {
+                    picker.DatePicker.showTime12hPicker(
+                      context,
+                      showTitleActions: true,
+                      onConfirm: (date) {
+                        ref.read(startTimeStateProvider.notifier).setStartTime(
+                              date.toString().substring(10, 16),
+                            );
+                      },
+                      currentTime: DateTime.now(),
+                    );
+                  },
+
                   width: AppConsts.kWidth * 0.45,
                   height: 52.h,
                   borderColor: AppConsts.kLight,
                   bgColor: AppConsts.kBlueLight,
-                  text: "Start time",
+                  text: todoStartTime.isNotEmpty ? todoStartTime : "Start time",
                 ),
                 OutlineBtn(
                   //TODO: Add tap handler
-                  onTap: () {},
+                  onTap: () {
+                    picker.DatePicker.showTime12hPicker(
+                      context,
+                      showTitleActions: true,
+                      onConfirm: (date) {
+                        ref
+                            .read(finishTimeStateProvider.notifier)
+                            .setFinishTime(
+                              date.toString().substring(10, 16),
+                            );
+                      },
+                      currentTime: DateTime.now(),
+                    );
+                  },
                   width: AppConsts.kWidth * 0.45,
                   height: 52.h,
                   borderColor: AppConsts.kLight,
                   bgColor: AppConsts.kBlueLight,
-                  text: "End time",
+                  text: todoFinishTime.isNotEmpty ? todoFinishTime : "End time",
                 )
               ],
             ),
