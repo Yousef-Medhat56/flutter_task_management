@@ -6,6 +6,7 @@ import 'package:task_management/common/widgets/appstyle.dart';
 import 'package:task_management/common/widgets/input/text_field.dart';
 import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
+import 'package:task_management/features/todo/pages/add_todo.dart';
 
 class ExtendedAppBar extends StatelessWidget implements PreferredSizeWidget {
   ExtendedAppBar({super.key});
@@ -38,7 +39,12 @@ class ExtendedAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   child: GestureDetector(
                     //TODO: add onTap handler
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddTodoPage()));
+                    },
                     child: const Icon(
                       Icons.add,
                       color: AppConsts.kBkDark,

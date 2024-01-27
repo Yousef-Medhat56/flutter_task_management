@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_management/common/utils/constants.dart';
+import 'package:task_management/common/widgets/appstyle.dart';
+import 'package:task_management/common/widgets/buttons/outline_button.dart';
+import 'package:task_management/common/widgets/input/text_field.dart';
+import 'package:task_management/common/widgets/spacers/height_spacer.dart';
+
+class AddTodoPage extends ConsumerStatefulWidget {
+  const AddTodoPage({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddTodoPageState();
+}
+
+class _AddTodoPageState extends ConsumerState<AddTodoPage> {
+  final TextEditingController todoTitleController = TextEditingController();
+  final TextEditingController todoDescController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Add New Task",
+          style: textStyle(18, Colors.white, FontWeight.w600),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        child: ListView(
+          children: [
+            const HeightSpacer(height: 20),
+            CustomTextField(
+              controller: todoTitleController,
+              hintText: "Title",
+              hintStyle: textStyle(16, AppConsts.kGreyLight, FontWeight.w600),
+            ),
+            const HeightSpacer(height: 12),
+            CustomTextField(
+              controller: todoDescController,
+              hintText: "Description",
+              hintStyle: textStyle(16, AppConsts.kGreyLight, FontWeight.w600),
+            ),
+            const HeightSpacer(height: 12),
+            OutlineBtn(
+              //TODO: Add tap handler
+              onTap: () {},
+              width: AppConsts.kWidth,
+              height: 52.h,
+              borderColor: AppConsts.kLight,
+              bgColor: AppConsts.kBlueLight,
+              text: "Set date",
+            ),
+            const HeightSpacer(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OutlineBtn(
+                  //TODO: Add tap handler
+                  onTap: () {},
+                  width: AppConsts.kWidth * 0.45,
+                  height: 52.h,
+                  borderColor: AppConsts.kLight,
+                  bgColor: AppConsts.kBlueLight,
+                  text: "Start time",
+                ),
+                OutlineBtn(
+                  //TODO: Add tap handler
+                  onTap: () {},
+                  width: AppConsts.kWidth * 0.45,
+                  height: 52.h,
+                  borderColor: AppConsts.kLight,
+                  bgColor: AppConsts.kBlueLight,
+                  text: "End time",
+                )
+              ],
+            ),
+            const HeightSpacer(height: 20),
+            OutlineBtn(
+              //TODO: Add tap handler
+              onTap: () {},
+              width: AppConsts.kWidth,
+              height: 52.h,
+              borderColor: AppConsts.kLight,
+              bgColor: AppConsts.kGreen,
+              text: "Submit",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
