@@ -10,6 +10,7 @@ import 'package:task_management/common/widgets/spacers/width_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
 import 'package:task_management/features/todo/controllers/expansion_provider.dart';
 import 'package:task_management/features/todo/widgets/extended_appbar.dart';
+import 'package:task_management/features/todo/widgets/today_tasks_list.dart';
 import 'package:task_management/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -105,27 +106,11 @@ class _HomePageState extends ConsumerState<HomePage>
                     Radius.circular(AppConsts.kRadius),
                   ),
                   child: TabBarView(controller: tabController, children: [
-                    //TODO: add container child
                     Container(
                       color: AppConsts.kBkLight,
                       height: AppConsts.kHeight * 0.3,
-                      child: ListView(
-                        children: [
-                          TodoTile(
-                            title: "Title",
-                            description: "Lorem ipsum...",
-                            start: "03:00",
-                            end: "05:30",
-                            switcher: Switch(
-                                value: true,
-                                onChanged: (bool value) {
-                                  value = !value;
-                                }),
-                          )
-                        ],
-                      ),
+                      child: const TodayTasksList(),
                     ),
-                    //TODO: add container child
                     Container(
                       color: AppConsts.kGreyLight,
                       height: AppConsts.kHeight * 0.3,
