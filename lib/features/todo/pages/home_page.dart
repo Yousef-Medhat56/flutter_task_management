@@ -9,6 +9,7 @@ import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/spacers/width_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
 import 'package:task_management/features/todo/controllers/expansion_provider.dart';
+import 'package:task_management/features/todo/controllers/todo/todo_provider.dart';
 import 'package:task_management/features/todo/widgets/extended_appbar.dart';
 import 'package:task_management/features/todo/widgets/today_tasks_list.dart';
 import 'package:task_management/features/todo/widgets/todo_tile.dart';
@@ -27,8 +28,11 @@ class _HomePageState extends ConsumerState<HomePage>
 
   final String dayAfterTomorrow =
       DateTime.now().add(const Duration(days: 2)).toString().substring(5, 10);
+
   @override
   Widget build(BuildContext context) {
+    ref.read(todoStateProvider.notifier).refresh();
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -114,6 +118,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     Container(
                       color: AppConsts.kGreyLight,
                       height: AppConsts.kHeight * 0.3,
+                      child: ListView(),
                     ),
                   ]),
                 ),

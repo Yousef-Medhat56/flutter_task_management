@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:task_management/common/models/task_model.dart';
 
 String getToday() {
@@ -27,4 +30,16 @@ bool getTaskStatus(TaskModel task) {
   bool? isCompleted;
   task.isCompleted! > 0 ? isCompleted = true : isCompleted = false;
   return isCompleted;
+}
+
+Color getRandomColor() {
+  Random random = Random();
+  List<Color> colorList = const [
+    Color(0xFFd80000),
+    Color(0xFF027eb5),
+    Color(0xFFF9F900),
+    Color(0xFF20a31E)
+  ];
+  int index = random.nextInt(colorList.length);
+  return colorList[index];
 }
