@@ -4,15 +4,14 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:task_management/common/utils/constants.dart';
 import 'package:task_management/common/widgets/appstyle.dart';
-import 'package:task_management/common/widgets/expansion/expansion_tile.dart';
 import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/spacers/width_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
-import 'package:task_management/features/todo/controllers/expansion_provider.dart';
 import 'package:task_management/features/todo/controllers/todo/todo_provider.dart';
+import 'package:task_management/features/todo/widgets/day_after_tomorrow_tasks.dart';
 import 'package:task_management/features/todo/widgets/extended_appbar.dart';
 import 'package:task_management/features/todo/widgets/today_tasks_list.dart';
-import 'package:task_management/features/todo/widgets/todo_tile.dart';
+import 'package:task_management/features/todo/widgets/tomorrow_tasks_list.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -124,59 +123,9 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               const HeightSpacer(height: 24),
-              CustomExpansionTile(
-                title: "Tomorrow's tasks",
-                subtitle: "Tomorrow's tasks are shown here",
-                onExpansionChanged: (bool isExpanded) {
-                  ref
-                      .read(expansionStateProvider.notifier)
-                      .setState(!isExpanded);
-                },
-                trailing: Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: ref.watch(expansionStateProvider)
-                      ? const Icon(
-                          AntDesign.circledown,
-                          color: AppConsts.kLight,
-                        )
-                      : const Icon(AntDesign.closecircleo,
-                          color: AppConsts.kBlueLight),
-                ),
-                children: [],
-              ),
+              const TomorrowTasksList(),
               const HeightSpacer(height: 24),
-              CustomExpansionTile(
-                title: dayAfterTomorrow,
-                subtitle: "$dayAfterTomorrow tasks are shown here",
-                onExpansionChanged: (bool isExpanded) {
-                  ref
-                      .read(expansionState0Provider.notifier)
-                      .setState(!isExpanded);
-                },
-                trailing: Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: ref.watch(expansionState0Provider)
-                      ? const Icon(
-                          AntDesign.circledown,
-                          color: AppConsts.kLight,
-                        )
-                      : const Icon(AntDesign.closecircleo,
-                          color: AppConsts.kBlueLight),
-                ),
-                children: [
-                  TodoTile(
-                    title: "Title",
-                    description: "Lorem ipsum...",
-                    start: "03:00",
-                    end: "05:30",
-                    switcher: Switch(
-                        value: true,
-                        onChanged: (bool value) {
-                          value = !value;
-                        }),
-                  )
-                ],
-              ),
+              const DayAfterTomorrowTasksList(),
               const HeightSpacer(height: 24),
             ],
           ),
