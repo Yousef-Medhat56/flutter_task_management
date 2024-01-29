@@ -13,6 +13,11 @@ String getTomorrow() {
   return tomorrow.toString().substring(0, 10);
 }
 
+String getDayAfterTomorrow() {
+  DateTime dayAfterTomorrow = DateTime.now().add(const Duration(days: 2));
+  return dayAfterTomorrow.toString().substring(0, 10);
+}
+
 List<String> last30days() {
   DateTime today = DateTime.now();
   DateTime oneMonthAgo = today.subtract(const Duration(days: 30));
