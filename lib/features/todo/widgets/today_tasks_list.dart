@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:task_management/common/models/task_model.dart';
+import 'package:task_management/common/utils/constants.dart';
 import 'package:task_management/features/todo/controllers/todo/todo_provider.dart';
+import 'package:task_management/features/todo/pages/update_todo.dart';
 import 'package:task_management/features/todo/utils/utils.dart';
 import 'package:task_management/features/todo/widgets/todo_tile.dart';
 
@@ -41,7 +43,18 @@ class TodayTasksList extends ConsumerWidget {
           },
           editWidget: GestureDetector(
             //TODO: add edit handler
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: ((context) {
+                    taskTitle = task.title!;
+                    taskDesc = task.desc!;
+                    return UpdateTodoPage(task.id!);
+                  }),
+                ),
+              );
+            },
             child: const Icon(MaterialCommunityIcons.circle_edit_outline),
           ),
         );

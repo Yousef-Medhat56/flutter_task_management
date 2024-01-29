@@ -19,3 +19,6 @@ class AppConsts {
   static double kHeight = 825.h;
   static double kRadius = 12.h;
 }
+
+String taskTitle = "";
+String taskDesc = "";

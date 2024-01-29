@@ -6,6 +6,7 @@ import 'package:task_management/common/utils/constants.dart';
 import 'package:task_management/common/widgets/expansion/expansion_tile.dart';
 import 'package:task_management/features/todo/controllers/expansion_provider.dart';
 import 'package:task_management/features/todo/controllers/todo/todo_provider.dart';
+import 'package:task_management/features/todo/pages/update_todo.dart';
 import 'package:task_management/features/todo/utils/utils.dart';
 import 'package:task_management/features/todo/widgets/todo_tile.dart';
 
@@ -47,7 +48,23 @@ class TomorrowTasksList extends ConsumerWidget {
               switcher: const SizedBox.shrink(),
               deleteTodo: () {
                 ref.read(todoStateProvider.notifier).deleteTodo(task.id!);
-              })
+              },
+              editWidget: GestureDetector(
+                //TODO: add edit handler
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) {
+                        taskTitle = task.title!;
+                        taskDesc = task.desc!;
+                        return UpdateTodoPage(task.id!);
+                      }),
+                    ),
+                  );
+                },
+                child: const Icon(MaterialCommunityIcons.circle_edit_outline),
+              ))
       ],
     );
   }
