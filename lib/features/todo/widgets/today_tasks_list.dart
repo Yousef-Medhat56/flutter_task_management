@@ -42,7 +42,6 @@ class TodayTasksList extends ConsumerWidget {
             ref.read(todoStateProvider.notifier).deleteTodo(task.id!);
           },
           editWidget: GestureDetector(
-            //TODO: add edit handler
             onTap: () {
               Navigator.push(
                 context,
