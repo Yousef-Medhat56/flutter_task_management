@@ -32,8 +32,9 @@ class TodayTasksList extends ConsumerWidget {
           color: getRandomColor(),
           switcher: Switch(
             value: task.isCompleted != 0,
-            //TODO: add change handler
-            onChanged: (bool value) {},
+            onChanged: (bool value) {
+              ref.read(todoStateProvider.notifier).markAsComplete(task.id!);
+            },
           ),
           deleteTodo: () {
             ref.read(todoStateProvider.notifier).deleteTodo(task.id!);
