@@ -6,6 +6,7 @@ import 'package:task_management/common/widgets/appstyle.dart';
 import 'package:task_management/common/widgets/spacers/height_spacer.dart';
 import 'package:task_management/common/widgets/spacers/width_spacer.dart';
 import 'package:task_management/common/widgets/text.dart';
+import 'package:task_management/features/todo/utils/utils.dart';
 
 class BottomTitle extends StatelessWidget {
   const BottomTitle(
@@ -33,17 +34,17 @@ class BottomTitle extends StatelessWidget {
                   height: 80.h,
                   width: 5.w,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppConsts.kRadius),
-                      ),
-                      //TODO: Make the color dynamic
-                      color: AppConsts.kGreen),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(AppConsts.kRadius),
+                    ),
+                    color: getRandomColor(),
+                  ),
                 );
               },
             ),
             const WidthSpacer(width: 12),
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
